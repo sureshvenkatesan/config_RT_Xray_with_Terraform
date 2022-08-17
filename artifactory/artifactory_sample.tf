@@ -152,28 +152,33 @@ resource "artifactory_virtual_maven_repository" "maven-virt-repo" {
 resource "artifactory_local_npm_repository" "s003-npm-local" {
   key          = "s003-npm-local"
   description = "The local NPM repository"
+  xray_index  = true
 }
 
 resource "artifactory_local_maven_repository" "s003-libs-snapshot-local" {
   key          = "s003-libs-snapshot-local"
   description = "The local MAVEN snapshot repository"
+  xray_index  = true
 }
 
 resource "artifactory_local_maven_repository" "s003-libs-release-local" {
   key          = "s003-libs-release-local"
   description = "The local MAVEN release repository"
+  xray_index  = true
 }
 
 resource "artifactory_remote_npm_repository" "s003-npm-remote" {
   key             = "s003-npm-remote"
   url             = "https://registry.npmjs.org/"
   repo_layout_ref = "npm-default"
+  xray_index  = true
 }
 
 resource "artifactory_remote_maven_repository" "s003-maven-remote" {
   key             = "s003-maven-remote"
   url             = "https://repo.maven.apache.org/maven2/"
   repo_layout_ref = "maven-2-default"
+  xray_index  = true
 }
 
 resource "artifactory_virtual_npm_repository" "s003-npm" {
