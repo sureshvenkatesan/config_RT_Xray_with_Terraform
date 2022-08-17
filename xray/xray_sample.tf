@@ -141,3 +141,38 @@ resource "xray_license_policy" "Prod-License-Policy" {
   }
 }
 
+# https://github.com/jfrog/SwampUp2022/blob/main/SUP003-Intro_to_DevSecOps_with_JFrog_Xray/scripts/json/lab2-prod-watch.json
+
+resource "xray_watch" "Prod-Watch" {
+  name        = "Prod-Watch"
+  description = "This is a watch created for Production Repos and Builds"
+  active      = true
+
+  watch_resource {
+    type = "all-repos"
+
+  }
+  watch_resource {
+    type       = "build"
+    bin_mgr_id = "default"
+    name       = "swampup22_s003_mvn_pipeline"
+
+  }
+  watch_resource {
+    type       = "build"
+    bin_mgr_id = "default"
+    name       = "swampup22_s003_npm_pipeline"
+
+  }
+  assigned_policy {
+    name = xray_security_policy.Prod-Security-Policy.name
+    type = "security"
+  }
+
+  assigned_policy {
+    name = xray_license_policy.Prod-License-Policy.name
+    type = "license"
+  }
+
+  watch_recipients = []
+}
