@@ -3,7 +3,7 @@ terraform {
   required_providers {
     artifactory = {
       source  = "registry.terraform.io/jfrog/artifactory"
-      version = "6.11.1"
+      version = "6.11.3"
     }
   }
 }
@@ -144,6 +144,72 @@ resource "artifactory_virtual_maven_repository" "maven-virt-repo" {
   excludes_pattern           = "com/google/**"
   force_maven_authentication = true
   pom_repository_references_cleanup_policy = "discard_active_reference"
+}
+
+
+# https://github.com/jfrog/SwampUp2022/tree/main/SUP003-Intro_to_DevSecOps_with_JFrog_Xray
+# Create a new Artifactory local repository called my-local
+resource "artifactory_local_npm_repository" "s003-npm-local" {
+  key          = "s003-npm-local"
+  description = "The local NPM repository"
+}
+
+resource "artifactory_local_maven_repository" "s003-libs-snapshot-local" {
+  key          = "s003-libs-snapshot-local"
+  description = "The local MAVEN snapshot repository"
+}
+
+resource "artifactory_local_maven_repository" "s003-libs-release-local" {
+  key          = "s003-libs-release-local"
+  description = "The local MAVEN release repository"
+}
+
+resource "artifactory_remote_npm_repository" "s003-npm-remote" {
+  key             = "s003-npm-remote"
+  url             = "https://registry.npmjs.org/"
+  repo_layout_ref = "npm-default"
+}
+
+resource "artifactory_remote_maven_repository" "s003-maven-remote" {
+  key             = "s003-maven-remote"
+  url             = "https://repo.maven.apache.org/maven2/"
+  repo_layout_ref = "maven-2-default"
+}
+
+resource "artifactory_virtual_npm_repository" "s003-npm" {
+  key             = "s003-npm"
+  repo_layout_ref = "npm-default"
+  repositories    = [
+    "${artifactory_local_npm_repository.s003-npm-local.key}",
+    "${artifactory_remote_npm_repository.s003-npm-remote.key}"
+  ]
+  description                = "A test virtual repo"
+  notes                      = "Internal description"
+  default_deployment_repo = "s003-npm-local"
+}
+
+resource "artifactory_virtual_maven_repository" "s003-libs-snapshot" {
+  key             = "s003-libs-snapshot"
+  repo_layout_ref = "maven-2-default"
+  repositories    = [
+    "${artifactory_local_maven_repository.s003-libs-snapshot-local.key}",
+    "${artifactory_remote_maven_repository.s003-maven-remote.key}"
+  ]
+  description                = "A test virtual repo"
+  notes                      = "Internal description"
+  default_deployment_repo = "s003-libs-snapshot-local"
+}
+
+resource "artifactory_virtual_maven_repository" "s003-libs-release" {
+  key             = "s003-libs-release"
+  repo_layout_ref = "maven-2-default"
+  repositories    = [
+    "${artifactory_local_maven_repository.s003-libs-release-local.key}",
+    "${artifactory_remote_maven_repository.s003-maven-remote.key}"
+  ]
+  description                = "A test virtual repo"
+  notes                      = "Internal description"
+  default_deployment_repo = "s003-libs-release-local"
 }
 
 # Create a new Artifactory certificate called my-cert
