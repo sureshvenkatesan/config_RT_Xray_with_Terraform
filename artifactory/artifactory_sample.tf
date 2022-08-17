@@ -219,7 +219,8 @@ resource "artifactory_virtual_maven_repository" "s003-libs-release" {
 
 # Create a new Artifactory certificate called my-cert
 # https://registry.terraform.io/providers/jfrog/artifactory/latest/docs/resources/certificate
-/* resource "artifactory_certificate" "my-cert" {
+/* =============================
+resource "artifactory_certificate" "my-cert" {
   alias   = "my-cert"
   content = file("/key.pem")
 }
@@ -244,4 +245,5 @@ data "artifactory_file" "my-file" {
 data "artifactory_fileinfo" "my-file" {
   repository = "my-local"
   path = "/test/artifact.zip"
-} */
+} 
+=================================*/

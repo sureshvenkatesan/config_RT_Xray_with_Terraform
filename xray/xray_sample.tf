@@ -142,12 +142,16 @@ resource "xray_license_policy" "Prod-License-Policy" {
 }
 
 # https://github.com/jfrog/SwampUp2022/blob/main/SUP003-Intro_to_DevSecOps_with_JFrog_Xray/scripts/json/lab2-prod-watch.json
-# Before creating the watch make sure you have repos  with "xray_index  = true" so that the requirement for the watch_resource
-# "type = "all-repos" is satisfied. But for the builds there is  no terraform directive to add or update builds so they get indexed.data 
+/*=======
+ Before creating the watch make sure you have repos  with "xray_index  = true" so that the requirement for the watch_resource
+ "type = "all-repos" is satisfied. 
 
-# You need to use the [Add Builds to Indexing Configuration](https://www.jfrog.com/confluence/display/JFROG/Xray+REST+API#XrayRESTAPI-AddBuildstoIndexingConfiguration)
-# or [Update Builds Indexing Configuration](https://www.jfrog.com/confluence/display/JFROG/Xray+REST+API#XrayRESTAPI-UpdateBuildsIndexingConfiguration) REST APIs or 
-# index the builds using the UI in the "Xray > Settings>General>Indexed Resources"
+But for the builds there is  no terraform directive to add or update builds so they get indexed by xray 
+
+ You need to use the [Add Builds to Indexing Configuration](https://www.jfrog.com/confluence/display/JFROG/Xray+REST+API#XrayRESTAPI-AddBuildstoIndexingConfiguration)
+ or [Update Builds Indexing Configuration](https://www.jfrog.com/confluence/display/JFROG/Xray+REST+API#XrayRESTAPI-UpdateBuildsIndexingConfiguration) REST APIs or  
+ index the builds using the UI in the "Xray > Settings>General>Indexed Resources"
+ ==========*/
 
 resource "xray_watch" "Prod-Watch" {
   name        = "Prod-Watch"
