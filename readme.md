@@ -48,7 +48,7 @@ or
 terraform apply -var-file us-east-teamA.tfvars
 
 ```
-Note: Do not mix the tfstate from different  JPD's or envoironmnts by running the  "terraform apply" in seperate folders
+Note: Do not mix the tfstate from different  JPD's or environments by running the  "terraform apply" in seperate folders
 so that you can get different tfstate files 
 Also within a JPD  keep team based tfstate seperate so that someone does not accidentally do "terraform destroy" and destroy the work of all the teams ( in all the JPDs). 
 This way each team can be made responsible for their own tfstate so that if they destroy it they own the responsibility  and do not affect other teams.
