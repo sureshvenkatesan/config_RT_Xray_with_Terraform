@@ -81,7 +81,7 @@ resource "artifactory_remote_npm_repository" "my-remote" {
   repo_layout_ref = "npm-default"
 }
 ```
->>> Do the followig steps :
+### Do the followig steps :
 a) You can use the "terraform import" commands like the ones in [terraform_import.txt](artifactory/terraform_import.txt) to regenerate the terraform.tfstate.
 
 b) Then run the "terrafrom plan" and it will resync some of the attributes that have been initialized using variables like the artifactory user password, replication password , retrieval_cache_period_seconds in virtual reposiktories etc.,
