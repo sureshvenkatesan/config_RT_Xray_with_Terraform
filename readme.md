@@ -85,11 +85,11 @@ resource "artifactory_remote_npm_repository" "my-remote" {
 ### Solution: Do the following steps :
 a) You can use the "terraform import" commands like the ones in [terraform_import.txt](artifactory/terraform_import.txt) to regenerate the terraform.tfstate.
 
-b) Then run the "terrafrom plan" and it will resync some of the attributes that have been initialized using variables like the artifactory user password, replication password , retrieval_cache_period_seconds in virtual reposiktories etc.,
+b) Then run the "*terraform plan*" and it will resync some of the attributes that have been initialized using variables like the artifactory user password, replication password , retrieval_cache_period_seconds in virtual reposiktories etc.,
 
-c) run "terraform apply" . Now the tfstate will match what is in artifactory.
+c) run "*terraform apply*" . Now the tfstate will match what is in artifactory.
 
-d) Again run the "terrafrom plan" and you should see the output:
+d) Again run the "*terraform plan*" and you should see the output:
 ```text
 No changes. Your infrastructure matches the configuration.
 
