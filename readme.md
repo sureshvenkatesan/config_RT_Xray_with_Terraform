@@ -53,6 +53,7 @@ so that you can get different tfstate files
 Also within a JPD  keep team based tfstate seperate so that someone does not accidentally do "terraform destroy" and destroy the work of all the teams ( in all the JPDs). 
 This way each team can be made responsible for their own tfstate so that if they destroy it they own the responsibility  and do not affect other teams.
 
+---
 ## Creating terraform configuration for already existing resources in Artifactory
 
 As mentioned in [Import Terraform Configuration](https://learn.hashicorp.com/tutorials/terraform/state-import?
@@ -81,7 +82,7 @@ resource "artifactory_remote_npm_repository" "my-remote" {
   repo_layout_ref = "npm-default"
 }
 ```
-### Do the followig steps :
+### Solution: Do the followig steps :
 a) You can use the "terraform import" commands like the ones in [terraform_import.txt](artifactory/terraform_import.txt) to regenerate the terraform.tfstate.
 
 b) Then run the "terrafrom plan" and it will resync some of the attributes that have been initialized using variables like the artifactory user password, replication password , retrieval_cache_period_seconds in virtual reposiktories etc.,
@@ -94,3 +95,4 @@ No changes. Your infrastructure matches the configuration.
 
 Terraform has compared your real infrastructure against your configuration and found no differences, so no changes are needed.
 ```
+---
