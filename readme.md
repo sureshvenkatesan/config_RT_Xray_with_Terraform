@@ -56,8 +56,7 @@ This way each team can be made responsible for their own tfstate so that if they
 ---
 ## Creating terraform configuration for already existing resources in Artifactory
 
-As mentioned in [Import Terraform Configuration](https://learn.hashicorp.com/tutorials/terraform/state-import?
-in=terraform/state) :
+As mentioned in [Import Terraform Configuration](https://learn.hashicorp.com/tutorials/terraform/state-import?in=terraform/state) :
 ```text
 Terraform also supports bringing existing infrastructure under its management. To do so, you can use the import command to migrate resources into your Terraform state file. The import command does not currently generate the configuration for the imported resource, so you must write the corresponding configuration block to map the imported resource to it.
 ```
@@ -72,7 +71,8 @@ Example: Some of the repo  attributes that you usually  need
    xrayIndex etc.,
 
 2. Now if the repository below already exists in artifactory then how can we update the tfstate with what is in 
-   artifactory to match the resources in the [artifactory_sample.tf](artifactory/artifactory_sample.tf)?
+   artifactory to match the resources in the [artifactory_sample.tf](artifactory/artifactory_sample.tf) ?
+   
    For example tfstate for:
 ```bash
 # Create a new Artifactory remote repository called my-remote
@@ -82,7 +82,7 @@ resource "artifactory_remote_npm_repository" "my-remote" {
   repo_layout_ref = "npm-default"
 }
 ```
-### Solution: Do the followig steps :
+### Solution: Do the following steps :
 a) You can use the "terraform import" commands like the ones in [terraform_import.txt](artifactory/terraform_import.txt) to regenerate the terraform.tfstate.
 
 b) Then run the "terrafrom plan" and it will resync some of the attributes that have been initialized using variables like the artifactory user password, replication password , retrieval_cache_period_seconds in virtual reposiktories etc.,
