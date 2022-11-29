@@ -127,7 +127,7 @@ resource "artifactory_local_maven_repository" "bar" {
 
 resource "artifactory_remote_maven_repository" "baz" {
   key             = "baz"
-  url             = "https://search.maven.com/"
+  url             = "https://repo1.maven.org/maven2/"
   repo_layout_ref = "maven-2-default"
 }
 

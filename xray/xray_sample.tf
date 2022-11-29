@@ -2,7 +2,7 @@ terraform {
   required_providers {
     xray = {
       source  = "registry.terraform.io/jfrog/xray"
-      version = "1.5.1"
+      version = "1.6.0"
     }
   }
 }
@@ -29,56 +29,10 @@ provider "xray" {
 }
 # Take the json in https://git.jfrog.info/projects/PROFS/repos/cli_samples/browse/lab-3/security-policy.json 
 # and remove the double quotes on keys using https://csvjson.com/json_beautifier ( check the  "No quotes" + "on keys" )
-# Then  conevert to HCL using https://www.hcl2json.com/  or https://www.convertsimple.com/convert-json-to-hcl/   
+# Then  convert to HCL using https://www.hcl2json.com/  or https://www.convertsimple.com/convert-json-to-hcl/   
 #https://discuss.hashicorp.com/t/inconsistent-syntaxing/7398/3
 #https://github.com/kvz/json2hcl
-resource "xray_security_policy" "security1" {
-  description = "block high risk vulnerabilities"
 
-  name = "highRisk"
-
-
-  rule {
-    actions {
-      block_download {
-        active = true
-
-        unscanned = false
-      }
-
-      fail_build = true
-    }
-
-    criteria {
-      min_severity = "High"
-    }
-
-    name = "high"
-
-    priority = 1
-  }
-  rule {
-    actions {
-      block_download {
-        active = false
-
-        unscanned = false
-      }
-
-      fail_build = false
-    }
-
-    criteria {
-      min_severity = "Medium"
-    }
-
-    name = "medium"
-
-    priority = 2
-  }
-
-  type = "security"
-}
 
 # https://github.com/jfrog/SwampUp2022/blob/main/SUP003-Intro_to_DevSecOps_with_JFrog_Xray/scripts/json/lab1-prod-sec-policy.json
 
@@ -157,10 +111,16 @@ resource "xray_watch" "Prod-Watch" {
   name        = "Prod-Watch"
   description = "This is a watch created for Production Repos and Builds"
   active      = true
-
   watch_resource {
-    type = "all-repos"
+    type       = "repository"
+    bin_mgr_id = "default"
+    name       = "s003-libs-release-local"
+    repo_type  = "local"
 
+    filter {
+      type  = "regex"
+      value = ".*"
+    }
   }
   watch_resource {
     type       = "build"
@@ -186,3 +146,4 @@ resource "xray_watch" "Prod-Watch" {
 
   watch_recipients = []
 }
+
