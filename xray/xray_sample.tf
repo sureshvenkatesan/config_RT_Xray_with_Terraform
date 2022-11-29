@@ -33,6 +33,53 @@ provider "xray" {
 #https://discuss.hashicorp.com/t/inconsistent-syntaxing/7398/3
 #https://github.com/kvz/json2hcl
 
+resource "xray_security_policy" "security1" {
+  description = "block high risk vulnerabilities"
+
+  name = "highRisk"
+
+
+  rule {
+    actions {
+      block_download {
+        active = true
+
+        unscanned = false
+      }
+
+      fail_build = true
+    }
+
+    criteria {
+      min_severity = "High"
+    }
+
+    name = "high"
+
+    priority = 1
+  }
+  rule {
+    actions {
+      block_download {
+        active = false
+
+        unscanned = false
+      }
+
+      fail_build = false
+    }
+
+    criteria {
+      min_severity = "Medium"
+    }
+
+    name = "medium"
+
+    priority = 2
+  }
+
+  type = "security"
+}
 
 # https://github.com/jfrog/SwampUp2022/blob/main/SUP003-Intro_to_DevSecOps_with_JFrog_Xray/scripts/json/lab1-prod-sec-policy.json
 
