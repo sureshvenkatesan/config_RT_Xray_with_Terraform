@@ -38,3 +38,6 @@ terraform.rc
 
 # Ignore files automatically maintained automatically by "terraform init"
 .terraform.lock.hcl
+
+# Ignore the files from .samples
+**/samples/*

@@ -96,3 +96,29 @@ No changes. Your infrastructure matches the configuration.
 Terraform has compared your real infrastructure against your configuration and found no differences, so no changes are needed.
 ```
 ---
+To apply the changes from the [oob_samples/artifactory/sample.tf](oob_samples/artifactory/sample.tf)
+Make sure you keep a copy of the samples/gpg.* and samples/rsa.* files in the oob_samples/artifactory/samples subdirectory.
+```
+cd oob_samples/artifactory/
+terraform init 
+terraform plan -var-file /Users/sureshv/myCode/github-sv/terraform_test/artifactory/terraform.tfvars
+terraform apply -var-file /Users/sureshv/myCode/github-sv/terraform_test/artifactory/terraform.tfvars
+```
+
+To apply the changes from the [oob_samples/xray/sample.tf](oob_samples/xray/sample.tf)
+Note: Reported 3 changes needed in the sample.tf in [slack](https://jfrog.slack.com/archives/CQC6UQ95Z/p1685630319527559) 
+```
+cd oob_samples/xray/
+terraform init 
+terraform plan -var-file /Users/sureshv/myCode/github-sv/terraform_test/artifactory/terraform.tfvars
+terraform apply -var-file /Users/sureshv/myCode/github-sv/terraform_test/artifactory/terraform.tfvars
+```
+
+To apply the changes from the [oob_samples/project/sample.tf](oob_samples/project/sample.tf)
+
+```
+cd oob_samples/project/
+terraform init 
+terraform plan -var-file /Users/sureshv/myCode/github-sv/terraform_test/artifactory/terraform.tfvars
+terraform apply -var-file /Users/sureshv/myCode/github-sv/terraform_test/artifactory/terraform.tfvars
+```
