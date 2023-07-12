@@ -1,6 +1,7 @@
 # Local .terraform directories
 **/.terraform/*
-
+**/.terraform
+.idea
 # temp folder
 temp
 # .tfstate files
@@ -40,4 +41,6 @@ terraform.rc
 .terraform.lock.hcl
 
 # Ignore the files from .samples
-**/samples/*
+**/samples/*!/projects/shell_scripts/project_use-cases.md
+**/project_use-cases.md
+**/1_access_swagger_import_in_postman_not_in_insomnia.json
