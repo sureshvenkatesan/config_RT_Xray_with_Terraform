@@ -35,11 +35,17 @@ terraform apply -var-file=terraform.tfvars \
 ```
 
 But  the  repository in the project ( "vns1-sv-generic-local")  is still assigned to the default DEV environment and not  Project environment "vns1-stage1".  
-This will be fixed in PTRENG-5386.
 
-UNtil then you   use the [set_repo_env.sh](./shell_scripts/Project_Admin/set_repo_env.sh) script  as the **Project Admin** 
+This will be fixed in the enhancement PTRENG-5386.
+
+Until then you  can use the [set_repo_env.sh](./shell_scripts/Project_Admin/set_repo_env.sh) script  as the **Project 
+Admin** 
 to map the repo to the  project level environment "vns1-stage1".
 
 ```
-bash ./set_repo_env.sh https://proservices.jfrog.io  $PLATFORM_ADMIN vns1-sv-generic-local vns1-stage1
+bash ./set_repo_env.sh https://proservices.jfrog.io  $PROJECT_ADMIN_TOKEN vns1-sv-generic-local vns1-stage1
 ```
+
+Note: If you do not want to use any terraform scripts , then you can do all this using just the bash scripts as 
+mentioned in https://github.com/shivaraman83/projects-kickstart/blob/main/README.md which explains the steps the 
+Platform Admin and the Project Admin has to do.
