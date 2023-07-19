@@ -25,9 +25,9 @@ This Terraform Provider Plugin is open sourced  and you can find the code in the
 ## Using your own terraform.tfvars
 Once you do the 
 ```
-git clone https://git.jfrog.info/scm/profs/terraform_test.git
+git clone https://git.jfrog.info/scm/profs/config_RT_Xray_with_Terraform.git
 or
-git clone https://github.com/sureshvenkatesan/terraform_test.git
+git clone https://github.com/sureshvenkatesan/config_RT_Xray_with_Terraform.git
 ```
 , if you want to make changes to the terraform.tfvars but do not want git 
 to track the change then in local do the step from https://stackoverflow.com/questions/13630849/git-difference-between-assume-unchanged-and-skip-worktree#
@@ -37,9 +37,16 @@ git update-index --skip-worktree <RELATIVE_PATH>
 i.e
 git update-index --skip-worktree terraform.tfvars
 ```
+You will find sample terraform files for:
+| Product/feature | terrafrom .tf file |
+|-----------------|---------------------------------------------------------------------------------------------------------------------------|
+| Artifactory     | [artifactory_sample.tf](artifactory/artifactory_sample.tf) 
+| Xray            | [xray_sample.tf](xray/xray_sample.tf)   | Row 2    |
+| Projects        | See [readme_to_workaround_terraform_projects_provider.md](projects/readme_to_workaround_terraform_projects_provider.md)    |
 
 ## Best practice.
-You can run terraform plamn and apply using different tfvar files ( for each JPD or even tfvars for diferent team resources  in the same JPD)
+You can run terraform plan and apply using different .tfvar files ( for each JPD or even .tfvars for different team 
+resources  in the same JPD)
 ```
 terraform apply -var-file us-west.tfvars
 or
@@ -48,9 +55,10 @@ or
 terraform apply -var-file us-east-teamA.tfvars
 
 ```
-Note: Do not mix the tfstate from different  JPD's or environments by running the  "terraform apply" in seperate folders
+Note: Do not mix the tfstate from different  JPD's or environments by running the  "terraform apply" in separate folders
 so that you can get different tfstate files 
-Also within a JPD  keep team based tfstate seperate so that someone does not accidentally do "terraform destroy" and destroy the work of all the teams ( in all the JPDs). 
+Also within a JPD  keep team based tfstate separate so that someone does not accidentally do "terraform destroy" and 
+destroy the work of all the teams ( in all the JPDs). 
 This way each team can be made responsible for their own tfstate so that if they destroy it they own the responsibility  and do not affect other teams.
 
 ---
