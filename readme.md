@@ -40,8 +40,8 @@ git update-index --skip-worktree terraform.tfvars
 You will find sample terraform files for:
 | Product/feature | terrafrom .tf file |
 |-----------------|---------------------------------------------------------------------------------------------------------------------------|
-| Artifactory     | [artifactory_sample.tf](artifactory/artifactory_sample.tf) 
-| Xray            | [xray_sample.tf](xray/xray_sample.tf)   | Row 2    |
+| Artifactory     | [artifactory_sample.tf](artifactory/artifactory_sample.tf)    |
+| Xray            | [xray_sample.tf](xray/xray_sample.tf)    |
 | Projects        | See [readme_to_workaround_terraform_projects_provider.md](projects/readme_to_workaround_terraform_projects_provider.md)    |
 
 ## Best practice.
